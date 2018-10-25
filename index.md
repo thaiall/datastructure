@@ -6,14 +6,14 @@
 คือ การรวบรวมข้อมูลเป็นกลุ่มอย่างมีรูปแบบ เพื่อให้การนำข้อมูลกลับมาใช้ หรือประมวลผลอย่างมีประสิทธิภาพ ด้วยขั้นตอนวิธีที่หลากหลาย แล้วนำเสนอได้อย่างถูกต้องรวดเร็วตามลักษณะงานที่ต้องการ 
 คือ การนำกลุ่มของข้อมูลขนาดใหญ่มาจัดรูปแบบ เพื่อให้เครื่องประมวลผลและแสดงผลอย่างมีขั้นตอน โดยเริ่มจากการรวบรวม เพิ่ม ลบ หรือเข้าถึงข้อมูลแต่ละรายการ
 
-# index.md in [Link](https://github.com/thaiall/datastructure/edit/master/index.md) 
-# My theme is [Link](https://jekyllrb.com/) 
+# index.md at [Link](https://github.com/thaiall/datastructure/edit/master/index.md) 
+# My theme at [Link](https://jekyllrb.com/) 
 # Datastructure page at [Link](http://www.thaiall.com/datastructure) 
-# Github.io in [Link](https://thaiall.github.io/datastructure/)
-<div align="center" width="100%">
+# Github.io at [Link](https://thaiall.github.io/datastructure/)
+# My main website at [Link](http://www.thaiall.com)
 ![Image](http://www.thaiall.com/datastructure/typeofds.png)
-<br/>
-[Link](http://www.thaiall.com)<br/>
+
 ![Image](https://raw.githubusercontent.com/thaiall/programming-page/master/Nation_University_Logo.png)<br/>
+
 <a href="http://www.nation.ac.th"><img src="http://www.thaiall.com/me/picme.jpg"></a><br/>
-</div>
+
