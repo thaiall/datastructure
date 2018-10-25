@@ -1,11 +1,9 @@
 ## Welcome to Datastructure
 
-index.md in [editor on GitHub](https://github.com/thaiall/datastructure/edit/master/index.md) 
-My theme is [Jekyll](https://jekyllrb.com/) 
-Datastructure page at [thaiall.com/datastructure](http://www.thaiall.com/datastructure) 
-View in [github.io](https://thaiall.github.io/datastructure/)
-
-### Markdown
+<br/>index.md in [editor on GitHub](https://github.com/thaiall/datastructure/edit/master/index.md) 
+<br/>My theme is [Jekyll](https://jekyllrb.com/) 
+<br/>Datastructure page at [thaiall.com/datastructure](http://www.thaiall.com/datastructure) 
+<br/>View in [github.io](https://thaiall.github.io/datastructure/)
 
 <center>
 ![Image](http://www.thaiall.com/datastructure/typeofds.png)
