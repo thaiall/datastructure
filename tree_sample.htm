@@ -1,0 +1,167 @@
+<script>
+var tree=new BinaryTree();
+tree.setNode(1,0,0);
+tree.setNode(2,1,0);
+tree.setNode(9,1,1);
+tree.setNode(4,2,0);
+tree.setNode(5,2,1);
+tree.setNode(0,2,2);
+tree.setNode(7,2,3);
+document.write("" + tree.level + tree.node); // ค่า 00 นั้น เมื่อเริ่มต้นจำนวน node ที่กำหนดไว้ คือ 0
+document.write(tree.rightChild()); // ค่า 3 คือ right ของ 0,0
+document.write("" + tree.level + tree.node); // ค่า 11 คือ ระดับที่ 1 และโหนดที่ 1 ซึ่ง value=3
+document.write(tree.leftChild()); // ค่า 6 คือ ค่าลูกทางซ้ายของ node ที่ 3 
+document.write("" + tree.level + tree.node + "<br/>"); // ค่า 22 คือ ตำแหน่งของค่า 6
+document.write(tree.root()); // 1
+document.write("" + tree.level + tree.node); // ค่า 00 คือ ระดับที่ 0 และโหนดที่ 0
+document.write(tree.getNodePow(0,0)); //1
+document.write(tree.getNodePow(2,3)); //7
+document.write(tree.btSMF(2,3) + "<br/>"); // 6
+document.write(tree.traverse()); // 1,2,4,5,3,6,7 คือการท่องแบบ preorder
+document.write("" + tree.level + tree.node + "<br/>"); // ค่า 00 คือ ย้อนกลับไปที่จุดเริ่มต้น
+document.write(tree.leftChild()); // 2
+document.write("" + tree.level + tree.node + "<br/>"); // ค่า 10 คือ ตำแหน่งของค่า 4
+document.write(tree.rightChild()); // 5
+document.write("" + tree.level + tree.node + "<br/>"); // ค่า 21 คือ ตำแหน่งของค่า 5
+ 
+function BinaryTree() {
+ 
+  // for node-based navigation
+  this.level = 0; // current level we're on
+  this.node = 0;  // current node we're on
+ 
+  // shift-based formula works only on a binary tree.
+  // 1<<k is 2^k (อ่าน https://www.w3schools.com/jsref/jsref_operators.asp)
+  // so location = node + 2^level - 1
+  // "binary tree Storage Management Function"
+  this.btSMF = function(level, node) {
+    return node + (1<<level) - 1;
+  }
+   
+  // I think this is the easier-to-grok equivalent with Math.pow...
+  this.btSMFPow = function(level, node) {
+    return node + Math.pow(2, level) - 1;
+  }
+   
+  // where we keep 'em
+  this.Nodes = new Array();
+   
+  // get a node using the bit-shift
+  // if level isn't supplied, return value of the current node
+  this.getNode = function(level, node) {
+    if (level === undefined) {
+      return this.Nodes[this.btSMF(this.level, this.node)];
+    } else {
+      return this.Nodes[this.btSMF(level, node)];
+    }
+  }
+   
+  // set a node using the bit-shift
+  // if level argument is supplied use it, otherwise use current location level
+  this.setNode = function(value, level, node) {
+    if (level === undefined) {
+      this.Nodes[this.btSMF(this.level, this.node)] = value;  
+    } else {
+      this.Nodes[this.btSMF(level, node)] = value;  
+    }
+  }
+   
+  // get a node using the Math.pow alternative
+  // didn't implement node position effects in this version
+  this.getNodePow = function(level, node) {
+    return this.Nodes[this.btSMF(level, node)];    
+  }
+   
+  // set a node using the Math.pow alternative
+  // didn't implement node position effects in this version
+  this.setNodePow = function(value, level, node) {
+    this.Nodes[this.btSMFPow(level, node)] = value;
+  }
+   
+  // set the current position to the root: tree.root()
+  // set the value at the root: tree.root(100)
+  // get the value at the root: rootvalue = tree.root()
+  // this one uses the bitshifted SMF
+  this.root = function(value) {
+    this.level = 0;
+    this.node = 0;
+    // if a value was supplied, set it
+    if (value !== undefined) {
+      this.Nodes[this.btSMF(this.level, this.node)] = value; // level 0, node 0
+    }
+    // return the root node value
+    return this.Nodes[this.btSMF(this.level, this.node)];
+  }
+   
+  // alternate version of root using Math.pow, just to double-check
+  this.rootPow = function(value) {
+    this.level = 0;
+    this.node = 0;
+    if (value !== undefined) {
+      this.Nodes[this.btSMFPow(this.level, this.node)] = value;
+    }
+    return this.Nodes[this.btSMFPow(this.level, this.node)];
+  }
+   
+  // get the left child of a parent: tree.leftChild()
+  // set the left child of a parent: tree.leftChild(6);
+  this.leftChild = function(value) {
+    this.level++;
+    this.node = this.node * 2; // see diagram above
+    if (value !== undefined) {
+      this.Nodes[this.btSMF(this.level, this.node)] = value;
+    }
+    return this.Nodes[this.btSMF(this.level, this.node)];
+  }
+   
+  // same but for right child
+  this.rightChild = function(value) {
+    this.level++;
+    this.node = this.node * 2 + 1; // see diagram above
+    if (value !== undefined) {
+      this.Nodes[this.btSMF(this.level, this.node)] = value;
+    }
+    return this.Nodes[this.btSMF(this.level, this.node)];
+  }
+   
+  // get the parent of the current node
+  this.parent = function(value) {
+    this.level--;
+    this.node = this.node >> 1; // alternatively, Math.floor(this.node / 2) prolly
+    if (value !== undefined) {
+      this.Nodes[this.btSMF(this.level, this.node)] = value;
+    }
+    return this.Nodes[this.btSMF(this.level, this.node)];
+  }
+   
+  // recursively traverse the tree in an inner function
+  this.traverse = function() {
+    var that = this,          // reference to the tree
+        stack = new Array();  // store traversal results
+     
+    // recursive inner function that immediately executes from current node position
+    (innerTraverse = function() {
+       
+      // push current node value onto the stack
+      stack.push(that.getNode());
+       
+      // if it has a left child, go there and traverse, then come back
+      if (that.leftChild() !== undefined) {
+        innerTraverse();
+      }
+      that.parent();
+       
+      // if it has a right child, go there and traverse, then come back
+      if (that.rightChild() !== undefined) {
+        innerTraverse();
+      }
+      that.parent();
+ 
+    })();
+     
+    // done recursing, return our array
+    return stack;
+  }
+   
+}
+</script>
