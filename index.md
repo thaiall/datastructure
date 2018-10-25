@@ -10,9 +10,10 @@
 # My theme is [Link](https://jekyllrb.com/) 
 # Datastructure page at [Link](http://www.thaiall.com/datastructure) 
 # Github.io in [Link](https://thaiall.github.io/datastructure/)
-
+<div align="center" width="100%">
 ![Image](http://www.thaiall.com/datastructure/typeofds.png)
 <br/>
-[Link](http://www.thaiall.com)
-![Image](https://raw.githubusercontent.com/thaiall/programming-page/master/Nation_University_Logo.png)
-<a href="http://www.nation.ac.th"><img src="Nation_University_Logo.png"></a>
+[Link](http://www.thaiall.com)<br/>
+![Image](https://raw.githubusercontent.com/thaiall/programming-page/master/Nation_University_Logo.png)<br/>
+<a href="http://www.nation.ac.th"><img src="http://www.thaiall.com/me/picme.jpg"></a><br/>
+</div>
